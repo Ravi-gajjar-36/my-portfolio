@@ -7,6 +7,10 @@
     --text-light: #f0f0f0;
     --text-muted: #aaa;
     --max-width: 1200px;
+
+    /* extra for experience + glow */
+    --accent: #37a1ff;
+    --accent-soft: rgba(55, 161, 255, 0.4);
 }
 
 * {
@@ -18,7 +22,7 @@
 body {
     background-color: var(--bg-dark);
     color: var(--text-light);
-    font-family: 'Inter', sans-serif; /* Or another modern font */
+    font-family: 'Inter', sans-serif;
     line-height: 1.6;
 }
 
@@ -82,7 +86,6 @@ a {
 
 .hero-content h1 {
     font-size: 3.8em;
-    /* Gradient color effect */
     background: linear-gradient(to right, var(--primary-color), #673ab7); 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -122,7 +125,7 @@ a {
 
 .icon-style {
     font-size: 2.5em;
-    color: var(--secondary-color); /* Icon color */
+    color: var(--secondary-color);
     margin-bottom: 15px;
     display: block;
 }
@@ -144,127 +147,127 @@ a {
     color: var(--primary-color);
 }
 
-/* ABOUT SECTION */
-.about-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 40px;
+/* ABOUT SECTION - ACCORDION */
+.section-title-about {
+    font-size: 2.6em;
+    text-align: center;
+    margin-bottom: 50px;
+    background: linear-gradient(to right, var(--primary-color), #b388ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.accordion-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.accordion-item {
+    background: radial-gradient(circle at top left, #202341 0, var(--bg-light) 55%);
+    border-radius: 18px;
+    border: 1px solid #262a4a;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+    padding: 18px 20px 0;
+    overflow: hidden;
+}
+
+.accordion-header {
+    display: flex;
     align-items: center;
-    text-align: left;
+    justify-content: space-between;
+    cursor: pointer;
+    padding-bottom: 10px;
 }
 
-.about-grid img {
-    max-width: 100%;
-    border-radius: 10px;
-    border: 3px solid var(--secondary-color);
+.accordion-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.bio p {
-    margin-bottom: 20px;
+.accordion-header h3 {
+    font-size: 1.2rem;
+    color: #8fb2ff;
 }
 
-.btn {
-    display: inline-block;
-    padding: 10px 25px;
-    border-radius: 5px;
-    margin-top: 10px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-.primary-btn {
-    background-color: var(--primary-color);
-    color: var(--text-light);
-}
-
-.primary-btn:hover {
-    background-color: #7b1fa2;
-}
-
-/* PROJECTS SECTION */
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.project-card {
-    background-color: var(--bg-light);
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    border-left: 5px solid var(--secondary-color);
-}
-
-.project-card h3 {
+.accordion-header.active h3 {
     color: var(--secondary-color);
-    margin-bottom: 10px;
 }
 
-.project-links a {
-    margin-right: 15px;
-    font-size: 0.9em;
-}
-
-/* CONTACT SECTION */
-.contact-links {
-    text-align: center;
-    margin-top: 30px;
-}
-
-.contact-btn {
-    margin: 0 15px;
-    padding: 10px 20px;
-    background-color: var(--bg-light);
-    border: 1px solid var(--primary-color);
-    border-radius: 5px;
-    display: inline-flex;
+.icon-style-small {
+    width: 40px;
+    height: 40px;
+    border-radius: 14px;
+    display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    background: radial-gradient(circle at 30% 10%, #73b5ff, #2a63ff);
+    color: #dce9ff;
 }
 
-.contact-btn:hover {
-    background-color: var(--primary-color);
-}
-
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 20px 0;
-    border-top: 1px solid #222;
-    font-size: 0.8em;
+.toggle-icon {
+    font-size: 0.9rem;
     color: var(--text-muted);
+    transition: transform 0.25s ease, color 0.25s ease;
 }
 
-/* ANIMATION CLASSES (for the fade-in effect on scroll) */
-.fade-in, .fade-in-up {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    transition-delay: calc(var(--delay) * 1ms); /* Used for staggered card loading */
+.toggle-icon.open,
+.accordion-header.active .toggle-icon {
+    transform: rotate(180deg);
+    color: #8fb2ff;
 }
 
-.visible {
-    opacity: 1;
-    transform: translateY(0);
+.accordion-content {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    padding: 0 5px 18px 52px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
 }
 
-/* MEDIA QUERIES (Responsiveness) */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-    }
-    .nav-links {
-        margin-top: 20px;
-        padding: 10px;
-    }
-    .hero-content h1 {
-        font-size: 2.5em;
-    }
-    .card-container, .about-grid, .project-grid {
-        grid-template-columns: 1fr; /* Stack everything vertically */
-    }
-    .about-grid img {
-        margin-top: 30px;
-    }
+.accordion-content.open {
+    max-height: 500px; /* actual value is set inline by JS; this is a safe upper bound */
 }
+
+/* EXPERIENCE SECTION */
+.experience-section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    position: relative;
+}
+
+.experience-title {
+    font-size: 2.6rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #ffffff;
+}
+
+/* Timeline layout */
+.timeline {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) 70px minmax(0, 1.1fr);
+    align-items: center;
+    gap: 36px;
+}
+
+/* Center glowing line */
+.timeline-center {
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.timeline-line {
+    width: 3px;
+    background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+    border-radius: 999px;
+    box-shadow: 0 0 18p
