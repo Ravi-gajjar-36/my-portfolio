@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- INITIALIZE ACCORDION DEFAULT OPEN STATE ---
     const openContents = document.querySelectorAll('.accordion-content.open');
     openContents.forEach(content => {
-        content.style.maxHeight = content.scrollHeight + 10 + 'px';
+        content.style.maxHeight = content.scrollHeight + 'px';
     });
 });
 
@@ -72,6 +72,6 @@ function toggleAccordion(header) {
         content.classList.add('open');
         header.classList.add('active');
         if (icon) icon.classList.add('open');
-        content.style.maxHeight = content.scrollHeight + 'px';
+        content.style.maxHeight = (content.scrollHeight + 16) + 'px';
     }
 }
