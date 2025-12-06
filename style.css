@@ -223,12 +223,26 @@ a {
 .accordion-content {
     font-size: 0.95rem;
     color: var(--text-muted);
-    padding: 0 5px 18px 52px;
+
+    /* ⬇️ IMPORTANT: no vertical padding when closed */
+    padding: 0 5px 0 52px;
+
     border-top: 1px solid rgba(255, 255, 255, 0.04);
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
+
+    /* animate both height & padding */
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
 }
+
+.accordion-content.open {
+    /* big enough, JS will also set exact height */
+    max-height: 500px;
+
+    /* ⬇️ padding only when open */
+    padding: 8px 5px 18px 52px;
+}
+
 
 .toggle-icon {
   transition: transform 0.25s ease, color 0.25s ease;
@@ -238,10 +252,6 @@ a {
 .accordion-header.active .toggle-icon {
   transform: rotate(180deg);
   color: #8fb2ff;
-}
-
-.accordion-content.open {
-    max-height: 500px; /* actual value is set inline by JS; this is a safe upper bound */
 }
 
 /* EXPERIENCE SECTION */
