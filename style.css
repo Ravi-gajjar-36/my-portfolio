@@ -237,7 +237,7 @@ a {
 
 .accordion-content.open {
     /* big enough, JS will also set exact height */
-    max-height: 550px;
+    max-height: none;
 
     /* ⬇️ padding only when open */
     padding: 8px 5px 18px 52px;
