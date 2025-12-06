@@ -230,6 +230,16 @@ a {
     transition: max-height 0.3s ease-out;
 }
 
+.toggle-icon {
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.toggle-icon.open,
+.accordion-header.active .toggle-icon {
+  transform: rotate(180deg);
+  color: #8fb2ff;
+}
+
 .accordion-content.open {
     max-height: 500px; /* actual value is set inline by JS; this is a safe upper bound */
 }

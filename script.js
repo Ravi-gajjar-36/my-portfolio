@@ -58,27 +58,19 @@ document.addEventListener('DOMContentLoaded', () => {
 function toggleAccordion(header) {
     const item = header.parentElement;
     const content = item.querySelector('.accordion-content');
+    const icon = header.querySelector('.toggle-icon');
     const isOpen = content.classList.contains('open');
 
-    const allItems = document.querySelectorAll('.accordion-item');
-
-    // Close all
-    allItems.forEach(i => {
-        const c = i.querySelector('.accordion-content');
-        const h = i.querySelector('.accordion-header');
-        const icon = h.querySelector('.toggle-icon');
-
-        c.classList.remove('open');
-        c.style.maxHeight = null;
-        h.classList.remove('active');
+    if (isOpen) {
+        // CLOSE
+        content.classList.remove('open');
+        content.style.maxHeight = null;
+        header.classList.remove('active');
         if (icon) icon.classList.remove('open');
-    });
-
-    // Open clicked if it was closed
-    if (!isOpen) {
+    } else {
+        // OPEN
         content.classList.add('open');
         header.classList.add('active');
-        const icon = header.querySelector('.toggle-icon');
         if (icon) icon.classList.add('open');
         content.style.maxHeight = content.scrollHeight + 'px';
     }
